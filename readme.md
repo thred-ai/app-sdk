@@ -1,4 +1,4 @@
-# Foobar
+# Thred App Developer SDK
 
 Thred is a decentralized App Store Protocol. Using Thred, developers can create installable web3 applications and list them for sale on the Thred App Store. This SDK provides all the functions needed to create web3 applications. 
 
