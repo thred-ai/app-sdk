@@ -24,7 +24,9 @@ const thredSDK = require("thred-app-sdk")
 ### Initialize the SDK
 
 ```typescript
-thredSDK.initApp("https://thredapps.io") //Initialize the app with the full App Store URL. 
+const appKey = "..."
+
+thredSDK.initApp(appKey) //Establish a secure connection to the App Store with the App Key passed in the URL. 
 ```
 ### Call Smart Contract function
 

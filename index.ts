@@ -4,7 +4,7 @@
 
 import { ethers } from 'ethers';
 
-var domain: string | undefined = undefined;
+var key: string | undefined = undefined;
 
 export function sendTransaction(
   contract: { address: string; abi: any[] },
@@ -14,9 +14,9 @@ export function sendTransaction(
 ) {
   let eventCallback = (event: MessageEvent<any>) => {
     let transaction = event.data.transaction as ethers.Transaction;
-    let origin = event.origin;
+    let storeKey = event.data.key;
 
-    if (!checkDomain(origin, domain)) {
+    if (key !== storeKey) {
       return;
     } else if (transaction) {
       callback(transaction);
@@ -31,24 +31,15 @@ export function sendTransaction(
     contract,
     name,
     params,
+    key
   };
 
   window.postMessage(JSON.stringify(data), '*');
 }
 
-function checkDomain(origin: string = '', domain: string = '') {
-  let origins = [origin, origin.replace('https://', 'https://www.')];
 
-  let domains = [domain, domain.replace('https://', 'https://www.')];
-
-  if (origins.find((o) => domains.find((d) => o == d))) {
-    return true;
-  }
-  return false;
-}
-
-export function initApp(appStoreDomain: string) {
-  domain = appStoreDomain;
+export function initApp(storeKey: string) {
+  key = storeKey;
 }
 
 module.exports = { initApp, sendTransaction };
