@@ -1,13 +1,13 @@
 {
   "name": "app-sdk",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Javascript SDK used to build apps for the Thred Protocol. ",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Thred Apps",
   "license": "ISC",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.41.0",
@@ -17,5 +17,8 @@
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.1.1",
     "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2"
   }
 }
