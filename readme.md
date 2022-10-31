@@ -5,7 +5,7 @@ Thred is a decentralized App Store Protocol. Using Thred, developers can create 
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/) to install foobar.
+Use the package manager [npm](https://www.npmjs.com/) to install the Thred App Developer SDK.
 
 ```bash
 npm install thred-app-sdk
@@ -31,8 +31,8 @@ thredSDK.initApp("https://thredapps.io") //Initialize the app with the full App 
 Instead of natively handling the connection to the user's wallet, use the below method to call the Smart Contract with the existing wallet connected to an App Store Client.
 
 ```typescript
-const address = '0x.....293'
-const abi = [ [ { "anonymous": false, "inputs": [] } ] .... ]
+const address = '0x.....293' // Address of the contract
+const abi = [ [ { "anonymous": false, "inputs": [] } ] .... ] // ABI of the contract
 
 const data = {
      address,
