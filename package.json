@@ -1,12 +1,21 @@
 {
   "name": "app-sdk",
   "version": "0.1.0",
-  "description": "Javascript SDK used to build apps for the Thred Protocol. ",
+  "description": "Javascript SDK used to build apps for the Thred Protocol.",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "thred",
+    "apps",
+    "protocol",
+    "blockchain",
+    "web3",
+    "javascript",
+    "typescript",
+    "solidity"
+  ],
   "author": "Thred Apps",
   "license": "ISC",
   "devDependencies": {
