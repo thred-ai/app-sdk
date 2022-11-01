@@ -38,8 +38,8 @@ export function sendTransaction(
 }
 
 
-export function initApp(storeKey: string) {
-  key = storeKey;
+export function initApp(sessionKey: string) {
+  key = sessionKey;
 }
 
 module.exports = { initApp, sendTransaction };
