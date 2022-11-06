@@ -6,20 +6,27 @@ import { ethers } from 'ethers';
 
 var key: string | undefined = undefined;
 
+export interface Tx {
+  type: string;
+  data?: ethers.Transaction | any;
+}
+
 export function sendTransaction(
   contract: { address: string; abi: any[] },
   name: string,
   params: any[],
-  callback: (transaction?: ethers.Transaction) => any
+  value: number,
+  waitMode: string = 'none',
+  callback: (tx: Tx) => any
 ) {
   let eventCallback = (event: MessageEvent<any>) => {
     let transaction = event.data.transaction as ethers.Transaction;
-    let storeKey = event.data.key;
+    let sessionKey = event.data.key;
 
-    if (key !== storeKey) {
+    if (key !== sessionKey && sessionKey !== undefined) {
       return;
     } else if (transaction) {
-      callback(transaction);
+      callback({ type: 'transact', data: transaction });
       window.removeEventListener('message', eventCallback);
       return;
     }
@@ -31,15 +38,49 @@ export function sendTransaction(
     contract,
     name,
     params,
-    key
+    value,
+    key,
+    waitMode,
+    type: 'transact',
   };
 
-  window.postMessage(JSON.stringify(data), '*');
+  window.postMessage(data, '*');
 }
 
+export function requestFunction(
+  contract: { address: string; abi: any[] },
+  name: string,
+  params: any[],
+  callback: (tx: Tx) => any
+) {
+  let eventCallback = (event: MessageEvent<any>) => {
+    let data = event.data.viewData as any;
+    let sessionKey = event.data.key;
+
+    if (key !== sessionKey && sessionKey !== undefined) {
+      return;
+    } else if (data) {
+      callback({ type: 'view', data: data });
+      window.removeEventListener('message', eventCallback);
+      return;
+    }
+  };
+
+  window.addEventListener('message', eventCallback);
+
+  let data = {
+    contract,
+    name,
+    params,
+    key,
+    type: 'view',
+  };
+
+  window.postMessage(data, '*');
+}
 
 export function initApp(sessionKey: string) {
   key = sessionKey;
 }
 
-module.exports = { initApp, sendTransaction };
+module.exports = { initApp, sendTransaction, requestFunction };

@@ -41,9 +41,28 @@ const data = {
      abi
 }
 
-thredSDK.sendTransaction(data, "mySolidityFunction", [param1, param2, param3], (transaction) => {
+thredSDK.sendTransaction(data, "mySolidityCallFunction", [param1, param2, param3], (transaction) => {
 
      //Returns the transaction information in the form of an ethers.js Transaction
+
+})
+```
+### Read Smart Contract function
+
+Similarly, read the Smart Contract with the existing wallet connected to an App Store Client.
+
+```typescript
+const address = '0x.....293' // Address of the contract
+const abi = [ [ { "anonymous": false, "inputs": [] } ] .... ] // ABI of the contract
+
+const data = {
+     address,
+     abi
+}
+
+thredSDK.requestFunction(data, "mySolidityViewFunction", [param1, param2, param3], (viewData) => {
+
+     //Returns the data in the form of 'any'
 
 })
 ```
